@@ -24,6 +24,38 @@ buildscript {
         classpath "org.jlleitschuh.gradle:ktlint-gradle:10.0.0"
         classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
     }
+    
+    ext.versionMajor = 1
+    ext.versionMinor = 0
+    ext.versionPatch = 0
+
+    def computeVersionName() {
+        return String.format('%d.%d.%d', versionMajor, versionMinor, versionPatch)
+    }
+
+    def computeVersionCode() {
+        return (versionMajor * 1000000) + (versionMinor * 100000) + (versionPatch * 10000) + Integer.valueOf(System.env.BUILD_NUMBER ?: 0)
+    }
+
+    android {
+        defaultConfig {
+            applicationId "com.example.jenkinsblog"
+            minSdkVersion 21
+            targetSdkVersion 29
+            versionName computeVersionName()
+            versionCode computeVersionCode()
+
+            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        config {
+            keyAlias alias
+            keyPassword keyPass
+            storeFile file(keystore)
+            storePassword storePass
+        }
+    }
 }
 
 ext {
@@ -78,3 +110,5 @@ task qa {
             ':libsignal-service:test',
             ':Signal-Android:assemblePlayProdDebug'
 }
+
+
