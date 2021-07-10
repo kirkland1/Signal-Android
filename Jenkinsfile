@@ -48,6 +48,7 @@ pipeline {
                 script {
                     VARIANT = getBuildType()
                     sh "./gradlew test${VARIANT}UnitTest"
+                    junit 'src/reports/*-jupiter.xml'
                 }
             }
         }
