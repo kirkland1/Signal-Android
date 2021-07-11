@@ -46,14 +46,15 @@ buildscript {
             versionCode computeVersionCode()
 
             testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+        }
 
-    signingConfigs {
-        config {
-            keyAlias alias
-            keyPassword keyPass
-            storeFile file(keystore)
-            storePassword storePass
+        signingConfigs {
+            config {
+                keyAlias alias
+                keyPassword keyPass
+                storeFile file(keystore)
+                storePassword storePass
+            }
         }
     }
 }
