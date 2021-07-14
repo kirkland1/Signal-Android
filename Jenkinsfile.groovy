@@ -23,10 +23,9 @@ pipeline {
                         junit '**/build/test-results/**/*.xml'
                     } finally {
                         echo "done!"
-//                         sh "mv unit-tests.csv unit-tests-${env.BUILD_NUMBER}.csv"
-//                         archiveArtifacts artifacts: "unit-tests-${env.BUILD_NUMBER}.csv", followSymlinks: false
-//                         junit '**/build/test-results/**/*.xml'
-                       
+                        sh "mv unit-tests.csv unit-tests-${env.BUILD_NUMBER}.csv"
+                        archiveArtifacts artifacts: "unit-tests-${env.BUILD_NUMBER}.csv", followSymlinks: false
+                        junit '**/build/test-results/**/*.xml'
                     }
                 }
             }
