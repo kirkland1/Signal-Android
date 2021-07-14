@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     deleteDir()
-                    git 'git@github.com:teej2542/Signal-Android-test.git'
+                    git 'git@github.com:kirkland1/Signal-Android.git'
 
                     try {
                         sh "./gradlew test collectResults -x lintchecks:test --continue"
